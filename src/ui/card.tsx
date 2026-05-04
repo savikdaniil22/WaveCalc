@@ -1,0 +1,14 @@
+import * as React from 'react'
+import { cn } from '@/lib/utils'
+
+export const Card = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={cn('rounded-xl border border-slate-800 bg-slate-900/80 p-4', className)} {...props} />
+)
+
+export const CardTitle = ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+  <h3 className={cn('text-sm font-medium text-slate-200', className)} {...props} />
+)
+
+export const CardContent = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={cn('mt-3', className)} {...props} />
+)
