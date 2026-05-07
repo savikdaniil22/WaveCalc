@@ -5,10 +5,8 @@ export const calculateFspl = (distanceKm: number, frequencyMHz: number) =>
 
 export const calculateTotalLoss = (
   fsplDb: number,
-  cableLossDb: number,
-  connectorLossDb: number,
   additionalLossDb: number,
-) => fsplDb + cableLossDb + connectorLossDb + additionalLossDb
+) => fsplDb + additionalLossDb
 
 export const calculateReceivedPower = (
   txPowerDbm: number,
@@ -35,9 +33,9 @@ export const dbmToUv50 = (dbm: number) => {
 }
 
 const getQuality = (marginDb: number): CalcResults['quality'] => {
-  if (marginDb > 10) return 'Надежный канал'
-  if (marginDb >= 0) return 'Пограничный канал'
-  return 'Ненадежный канал'
+  if (marginDb < 0) return 'Ненадежный канал'
+  if (marginDb < 10) return 'Связь нестабильна'
+  return 'Надежный канал'
 }
 
 export const validateParams = (params: LinkParams) => {
@@ -51,8 +49,6 @@ export const calculateLinkResults = (params: LinkParams): CalcResults => {
   const fsplDb = calculateFspl(params.distanceKm, params.frequencyMHz)
   const totalLossDb = calculateTotalLoss(
     fsplDb,
-    params.cableLossDb,
-    params.connectorLossDb,
     params.additionalLossDb,
   )
   const receivedPowerDbm = calculateReceivedPower(

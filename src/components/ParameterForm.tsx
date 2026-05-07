@@ -11,19 +11,17 @@ const fields: Array<{ key: keyof LinkParams; label: string; step?: string }> = [
   { key: 'frequencyMHz', label: 'Частота (МГц)' },
   { key: 'distanceKm', label: 'Дистанция (км)', step: '0.1' },
   { key: 'txPowerDbm', label: 'Мощность передатчика (dBm)' },
-  { key: 'txGainDbi', label: 'Коэф. усиления антенны TX (dBi)' },
-  { key: 'rxGainDbi', label: 'Коэф. усиления антенны RX (dBi)' },
-  { key: 'cableLossDb', label: 'Потери в кабеле (dB)', step: '0.1' },
-  { key: 'connectorLossDb', label: 'Потери в разъемах (dB)', step: '0.1' },
-  { key: 'additionalLossDb', label: 'Дополнительные потери (dB)', step: '0.1' },
+  { key: 'txGainDbi', label: 'Усиление передающей антенны (dBi)' },
+  { key: 'rxGainDbi', label: 'Усиление приёмной антенны (dBi)' },
+  { key: 'additionalLossDb', label: 'Потери в линии передачи (dB)', step: '0.1' },
   { key: 'rxSensitivityDbm', label: 'Чувствительность приемника (dBm)' },
-  { key: 'towerHeightTxM', label: 'Высота мачты TX (м)' },
-  { key: 'towerHeightRxM', label: 'Высота мачты RX (м)' },
+  { key: 'towerHeightTxM', label: 'Высота передающей антенны (м)' },
+  { key: 'towerHeightRxM', label: 'Высота приёмной антенны (м)' },
   { key: 'obstacleHeightM', label: 'Высота препятствия (м)' },
-  { key: 'txLat', label: 'Широта TX', step: '0.0001' },
-  { key: 'txLon', label: 'Долгота TX', step: '0.0001' },
-  { key: 'rxLat', label: 'Широта RX', step: '0.0001' },
-  { key: 'rxLon', label: 'Долгота RX', step: '0.0001' },
+  { key: 'txLat', label: 'Широта передатчика', step: '0.0001' },
+  { key: 'txLon', label: 'Долгота передатчика', step: '0.0001' },
+  { key: 'rxLat', label: 'Широта приёмника', step: '0.0001' },
+  { key: 'rxLon', label: 'Долгота приёмника', step: '0.0001' },
 ]
 
 const optionalCoordinateKeys: Array<keyof LinkParams> = ['txLat', 'txLon', 'rxLat', 'rxLon']
@@ -38,7 +36,7 @@ export const ParameterForm = () => {
     <Card className="h-full">
       <CardTitle className="flex items-center gap-2">
         <Satellite size={16} />
-        Модуль 1 - Ввод параметров
+        Ввод параметров
       </CardTitle>
       <CardContent>
         <div className="grid gap-3">

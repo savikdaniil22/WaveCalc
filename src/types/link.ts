@@ -4,8 +4,6 @@ export interface LinkParams {
   txPowerDbm: number
   txGainDbi: number
   rxGainDbi: number
-  cableLossDb: number
-  connectorLossDb: number
   additionalLossDb: number
   rxSensitivityDbm: number
   obstacleHeightM: number
@@ -23,7 +21,7 @@ export interface CalcResults {
   receivedPowerDbm: number
   fadeMarginDb: number
   fresnelRadiusM: number
-  quality: 'Надежный канал' | 'Пограничный канал' | 'Ненадежный канал'
+  quality: 'Надежный канал' | 'Связь нестабильна' | 'Ненадежный канал'
   dbmToMw: number
   dbmToUv50: number
   terrainSamples?: number[]
