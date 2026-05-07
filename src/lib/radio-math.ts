@@ -24,18 +24,11 @@ export const calculateFirstFresnelRadius = (distanceKm: number, frequencyMHz: nu
   return Math.sqrt((wavelengthM * distanceM) / 4)
 }
 
-export const dbmToMw = (dbm: number) => 10 ** (dbm / 10)
-
-export const dbmToUv50 = (dbm: number) => {
-  const pW = 10 ** ((dbm - 30) / 10)
-  const vrms = Math.sqrt(pW * 50)
-  return vrms * 1_000_000
-}
-
 const getQuality = (marginDb: number): CalcResults['quality'] => {
-  if (marginDb < 0) return 'Ненадежный канал'
-  if (marginDb < 10) return 'Связь нестабильна'
-  return 'Надежный канал'
+  if (marginDb < 0) return 'Связь невозможна'
+  if (marginDb <= 5) return 'Критически низкий запас'
+  if (marginDb <= 10) return 'Допустимый уровень устойчивости'
+  return 'Устойчивый канал связи'
 }
 
 export const validateParams = (params: LinkParams) => {
@@ -67,7 +60,5 @@ export const calculateLinkResults = (params: LinkParams): CalcResults => {
     fadeMarginDb,
     fresnelRadiusM,
     quality: getQuality(fadeMarginDb),
-    dbmToMw: dbmToMw(receivedPowerDbm),
-    dbmToUv50: dbmToUv50(receivedPowerDbm),
   }
 }

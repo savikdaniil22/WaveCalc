@@ -9,10 +9,6 @@ export interface LinkParams {
   obstacleHeightM: number
   towerHeightTxM: number
   towerHeightRxM: number
-  txLat?: number
-  txLon?: number
-  rxLat?: number
-  rxLon?: number
 }
 
 export interface CalcResults {
@@ -21,8 +17,10 @@ export interface CalcResults {
   receivedPowerDbm: number
   fadeMarginDb: number
   fresnelRadiusM: number
-  quality: 'Надежный канал' | 'Связь нестабильна' | 'Ненадежный канал'
-  dbmToMw: number
-  dbmToUv50: number
+  quality:
+    | 'Связь невозможна'
+    | 'Критически низкий запас'
+    | 'Допустимый уровень устойчивости'
+    | 'Устойчивый канал связи'
   terrainSamples?: number[]
 }
